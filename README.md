@@ -4,6 +4,8 @@ A complementary module to Kubernetes (AKS) module to create the service principa
 
 This module requires elevated access to be able to create the application in AzureAD and assign roles to resources. It is therefore not recommended to be run as any CI/CD pipeline, but instead manually before running any automated process. The output can still be used by reading remote state.
 
+Accesses are based on [Microsoft documentation](https://docs.microsoft.com/en-us/azure/aks/kubernetes-service-principal).
+
 ## Usage
 
 Examples use [tau](https://github.com/avinor/tau).
