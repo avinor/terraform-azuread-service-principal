@@ -19,6 +19,10 @@ resource "random_string" "unique" {
   length  = 32
   special = false
   upper   = true
+
+  keepers = {
+    service_principal = azuread_service_principal.sp.id
+  }
 }
 
 resource "azuread_service_principal_password" "sp" {
