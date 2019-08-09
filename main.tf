@@ -1,5 +1,8 @@
 terraform {
   required_version = ">= 0.12.0"
+  required_providers {
+    azuread = ">= 0.5.0"
+  }
 }
 
 resource "azuread_application" "sp" {
