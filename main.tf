@@ -34,23 +34,9 @@ resource "azuread_service_principal_password" "sp" {
   end_date             = var.end_date
 }
 
-resource "azurerm_role_assignment" "acr" {
-  count                = var.acr_id != null ? 1 : 0
-  scope                = var.acr_id
-  role_definition_name = "Reader"
-  principal_id         = azuread_service_principal.sp.object_id
-}
-
-resource "azurerm_role_assignment" "subnet" {
-  count                = length(var.subnet_id)
-  scope                = var.subnet_id[count.index]
-  role_definition_name = "Network Contributor"
-  principal_id         = azuread_service_principal.sp.object_id
-}
-
-resource "azurerm_role_assignment" "storage" {
-  count                = length(var.storage_id)
-  scope                = var.storage_id[count.index]
-  role_definition_name = "Storage Account Contributor"
+resource "azurerm_role_assignment" "assignments" {
+  count                = length(var.assignments)
+  scope                = var.assignments[count.index].scope
+  role_definition_name = var.assignments[count.index].role_definition_name
   principal_id         = azuread_service_principal.sp.object_id
 }

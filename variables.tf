@@ -7,19 +7,8 @@ variable "end_date" {
   default     = null
 }
 
-variable "acr_id" {
-  description = "Id of Azure Container Registry to grant access to."
-  default     = null
-}
-
-variable "subnet_id" {
-  description = "List of ids of virtual network subnet to grant Network Contributer access to if using advanced networking."
-  type        = list(string)
-  default     = []
-}
-
-variable "storage_id" {
-  description = "List of storage account ids to grant Storage Account Contributor access to."
-  type        = list(string)
-  default     = []
+variable "assignments" {
+  description = "List of role assignments this service principal should have."
+  type = list(object({ scope = string, role_definition_name = string }))
+  default = []
 }
