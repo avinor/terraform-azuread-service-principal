@@ -2,6 +2,7 @@ terraform {
   required_version = ">= 0.12.0"
   required_providers {
     azuread = ">= 0.5.0"
+    azurerm = "~> 1.44.0"
   }
 }
 
