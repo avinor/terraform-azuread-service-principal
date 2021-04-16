@@ -3,21 +3,24 @@ terraform {
   required_providers {
     azuread = {
       source  = "hashicorp/azuread"
-      version = ">= 0.5.0"
+      version = ">= 1.4.0"
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 1.44.0"
+      version = "~> 2.55.0"
     }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
       version = "~> 3.1.0"
     }
   }
 }
+provider "azurerm" {
+  features {}
+}
 
 resource "azuread_application" "sp" {
-  name                       = var.name
+  display_name               = var.name
   identifier_uris            = ["http://${var.name}"]
   available_to_other_tenants = false
   oauth2_allow_implicit_flow = false
