@@ -9,6 +9,9 @@ variable "end_date" {
 
 variable "assignments" {
   description = "List of role assignments this service principal should have."
-  type        = list(object({ scope = string, role_definition_name = string }))
-  default     = []
+  type = list(object({
+    scope                = string
+    role_definition_name = string
+  }))
+  default = []
 }

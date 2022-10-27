@@ -11,12 +11,11 @@ Examples use [tau](https://github.com/avinor/tau).
 ```terraform
 module {
     source = "avinor/service-principal/azurerm"
-    version = "1.0.0"
+    version = "3.0.0"
 }
 
 inputs {
     name = "simple-sp"
-    end_date = "2020-01-01T00:00:00Z"
 
     assignments = [
         {

@@ -3,15 +3,11 @@ terraform {
   required_providers {
     azuread = {
       source  = "hashicorp/azuread"
-      version = "~> 1.6.0"
+      version = "~> 2.29.0"
     }
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 2.55.0"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "~> 3.1.0"
+      version = "~> 3.28.0"
     }
   }
 }
@@ -20,10 +16,8 @@ provider "azurerm" {
 }
 
 resource "azuread_application" "sp" {
-  display_name               = var.name
-  identifier_uris            = ["http://${var.name}"]
-  available_to_other_tenants = false
-  oauth2_allow_implicit_flow = false
+  display_name    = var.name
+  identifier_uris = ["http://${var.name}"]
 }
 
 resource "azuread_service_principal" "sp" {
@@ -32,19 +26,8 @@ resource "azuread_service_principal" "sp" {
   tags = ["aks", "terraform", var.name]
 }
 
-resource "random_string" "unique" {
-  length  = 32
-  special = false
-  upper   = true
-
-  keepers = {
-    service_principal = azuread_service_principal.sp.id
-  }
-}
-
 resource "azuread_service_principal_password" "sp" {
   service_principal_id = azuread_service_principal.sp.id
-  value                = random_string.unique.result
   end_date             = var.end_date
 }
 
