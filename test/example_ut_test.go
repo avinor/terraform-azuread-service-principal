@@ -18,6 +18,7 @@ func TestUT_Examples(t *testing.T) {
 		t.Run(test, func(t *testing.T) {
 			tfOptions := &terraform.Options{
 				TerraformDir: test,
+				Upgrade:      true,
 			}
 
 			terraform.Init(t, tfOptions)
