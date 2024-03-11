@@ -5,7 +5,7 @@ output "object_id" {
 
 output "client_id" {
   description = "The application id of AzureAD application created."
-  value       = azuread_application.sp.application_id
+  value       = azuread_application.sp.client_id
 }
 
 output "client_secret" {
